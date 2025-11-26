@@ -1,4 +1,19 @@
-import { Home } from "./views/Home.js";
+import Navbar from '../src/components/Navbar.js';
 
-document.getElementById("app").innerHTML = Home();
+export default function Home() {
+    const div = document.createElement('div');
+    div.className = 'home';
+
+    div.appendChild(Navbar());
+
+    const content = document.createElement('div');
+    content.className = 'home-content';
+    content.innerHTML = `
+        <h1>🎮 Bienvenido a GameZone</h1>
+        <p>Explora tus videojuegos favoritos.</p>
+    `;
+    div.appendChild(content);
+
+    return div; 
+}
 
