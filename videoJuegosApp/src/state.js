@@ -1,5 +1,6 @@
 export const state = {
   favorites: JSON.parse(localStorage.getItem('favorites')) || []
+  
 };
 
 export function addFavorite(game) {
