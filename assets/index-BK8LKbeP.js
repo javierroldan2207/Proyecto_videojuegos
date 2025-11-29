@@ -11,10 +11,10 @@
       </div>
     </section>
     ${a()}
-  `}const h="https://692aa71e7615a15ff24d3f93.mockapi.io/api/games";async function l(){try{const t=await fetch(h);if(!t.ok)throw new Error(`Error al cargar los juegos: ${t.status}`);return await t.json()||[]}catch(t){return console.error("Error en fetchGames:",t),[]}}const s={favorites:(JSON.parse(localStorage.getItem("favorites"))||[]).filter(t=>t&&typeof t.id=="string")};function g(t){t&&!s.favorites.find(e=>String(e.id)===String(t.id))&&(s.favorites.push(t),localStorage.setItem("favorites",JSON.stringify(s.favorites)))}function p(t){s.favorites=s.favorites.filter(e=>e.id!==t),localStorage.setItem("favorites",JSON.stringify(s.favorites))}window.addFavoriteFromList=async t=>{const e=String(t),n=(await l()).find(o=>String(o.id)===e);return n?(g(n),window.location.hash="#/list",window.router(),!0):!1};async function m(){const t=await l();if(!Array.isArray(t)||t.length===0)return`
+  `}const h="https://692aa71e7615a15ff24d3f93.mockapi.io/api/games";async function l(){try{const t=await fetch(h);if(!t.ok)throw new Error(`Error al cargar los juegos: ${t.status}`);return await t.json()||[]}catch(t){return console.error("Error en fetchGames:",t),[]}}const s={favorites:(JSON.parse(localStorage.getItem("favorites"))||[]).filter(t=>t&&typeof t.id=="string")};function g(t){t&&!s.favorites.find(e=>String(e.id)===String(t.id))&&(s.favorites.push(t),localStorage.setItem("favorites",JSON.stringify(s.favorites)))}function p(t){s.favorites=s.favorites.filter(e=>String(e.id)!==String(t)),localStorage.setItem("favorites",JSON.stringify(s.favorites))}window.addFavoriteFromList=async t=>{const e=String(t),n=(await l()).find(o=>String(o.id)===e);return n?(g(n),window.location.hash="#/list",window.router(),!0):!1};async function m(){const t=await l();if(!Array.isArray(t)||t.length===0)return`
       <section>
         <h1>Listado de Juegos</h1>
-        <p>No se pudieron cargar los juegos. (Verifica consola o la URL de la API).</p>
+        <p>No se pudieron cargar los juegos.</p>
       </section>
       ${a()}
     `;let e=`
@@ -37,7 +37,7 @@
         <td>${r.genre}</td>
         <td>${r.description}</td>
         <td>$${r.price.toFixed(2)}</td>
-        <td><button onclick="addFavoriteFromList('${r.id}')">❤️ Añadir</button></td>
+        <td><button onclick="addFavoriteFromList('${r.id}')">❤️</button></td>
       </tr>
     `}),e+=`
         </tbody>
@@ -65,7 +65,7 @@
         <td>${r.genre}</td>
         <td>${r.description}</td>
         <td>$${r.price.toFixed(2)}</td>
-        <td><button onclick="removeFavoriteFromView('${r.id}')">❌ Quitar</button></td>
+        <td><button onclick="removeFavoriteFromView('${r.id}')">❌</button></td>
       </tr>
     `}),e+=`
         </tbody>
