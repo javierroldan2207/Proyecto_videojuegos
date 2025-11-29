@@ -43,7 +43,7 @@ export async function List() {
         <tbody>
   `;
 
-  games.forEach(game => {
+  games.forEach((game) => {
     html += `
       <tr>
         <td>${game.name}</td>
@@ -62,5 +62,14 @@ export async function List() {
     ${Footer()}
   `;
 
+<<<<<<< HEAD
+=======
+  window.addFavoriteFromList = (id) => {
+    const game = games.find(g => g.id == id);
+    addFavorite(game);
+    document.getElementById('view').innerHTML = List();
+  };
+
+>>>>>>> d014c1124a89f6eb52771552c9fc73ba2b5a3aa7
   return html;
 }

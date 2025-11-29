@@ -1,5 +1,10 @@
 export const state = {
+<<<<<<< HEAD
   favorites: (JSON.parse(localStorage.getItem('favorites')) || []).filter(g => g && typeof g.id === 'string')
+=======
+  favorites: JSON.parse(localStorage.getItem('favorites')) || []
+  
+>>>>>>> d014c1124a89f6eb52771552c9fc73ba2b5a3aa7
 };
 
 export function addFavorite(game) {
