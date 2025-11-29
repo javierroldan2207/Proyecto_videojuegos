@@ -6,13 +6,15 @@ window.addFavoriteFromList = async (id) => {
   const gameIdString = String(id); 
   const games = await fetchGames();
   
-  const game = games.find(g => g.id === gameIdString); 
+  const game = games.find(g => String(g.id) === gameIdString); 
   
   if (game) {
     addFavorite(game);
     window.location.hash = '#/list'; 
     window.router(); 
+    return true; 
   }
+  return false; 
 };
 
 export async function List() {
@@ -22,7 +24,7 @@ export async function List() {
     return `
       <section>
         <h1>Listado de Juegos</h1>
-        <p>No se pudieron cargar los juegos.</p>
+        <p>No se pudieron cargar los juegos. (Verifica consola o la URL de la API).</p>
       </section>
       ${Footer()}
     `;
@@ -55,6 +57,7 @@ export async function List() {
       </tr>
     `;
   });
+
   html += `
         </tbody>
       </table>

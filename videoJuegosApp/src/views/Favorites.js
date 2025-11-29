@@ -4,6 +4,7 @@ import { Footer } from '../components/Footer.js';
 window.removeFavoriteFromView = (id) => {
     const gameIdString = String(id);
     removeFavorite(gameIdString); 
+    
     window.location.hash = '#/favorites';
     window.router(); 
 };
@@ -27,6 +28,7 @@ export function Favorites() {
         </thead>
         <tbody>
   `;
+
   games.forEach(game => {
     html += `
       <tr>
@@ -38,6 +40,7 @@ export function Favorites() {
       </tr>
     `;
   });
+
   html += `
         </tbody>
       </table>
