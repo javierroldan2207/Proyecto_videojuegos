@@ -10,6 +10,7 @@ window.addFavoriteFromList = async (id) => {
   
   if (game) {
     addFavorite(game);
+    window.location.hash = '#/list'; 
     window.router(); 
   }
 };
@@ -21,7 +22,7 @@ export async function List() {
     return `
       <section>
         <h1>Listado de Juegos</h1>
-        <p>No se pudieron cargar los juegos. (Verifica consola o la URL de la API).</p>
+        <p>No se pudieron cargar los juegos.</p>
       </section>
       ${Footer()}
     `;
@@ -43,7 +44,7 @@ export async function List() {
         <tbody>
   `;
 
-  games.forEach((game) => {
+  games.forEach(game => {
     html += `
       <tr>
         <td>${game.name}</td>
@@ -54,7 +55,6 @@ export async function List() {
       </tr>
     `;
   });
-
   html += `
         </tbody>
       </table>
@@ -62,14 +62,5 @@ export async function List() {
     ${Footer()}
   `;
 
-<<<<<<< HEAD
-=======
-  window.addFavoriteFromList = (id) => {
-    const game = games.find(g => g.id == id);
-    addFavorite(game);
-    document.getElementById('view').innerHTML = List();
-  };
-
->>>>>>> d014c1124a89f6eb52771552c9fc73ba2b5a3aa7
   return html;
 }
