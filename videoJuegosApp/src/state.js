@@ -1,3 +1,4 @@
+
 export const state = {
   favorites: (JSON.parse(localStorage.getItem('favorites')) || []).filter(g => g && typeof g.id === 'string')
 };
