@@ -1,6 +1,12 @@
 import { state, removeFavorite } from '../state.js';
 import { Footer } from '../components/Footer.js';
 
+window.removeFavoriteFromView = (id) => {
+    const gameIdString = String(id);
+    removeFavorite(gameIdString); 
+    window.router(); 
+};
+
 export function Favorites() {
   const games = state.favorites;
 
@@ -10,13 +16,13 @@ export function Favorites() {
       ${games.length === 0 ? '<p>No hay favoritos.</p>' : ''}
       <table>
         <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Género</th>
-              <th>Descripción</th>
-              <th>Precio</th>
-              <th>Acción</th>
-            </tr>
+          <tr>
+            <th>Nombre</th>
+            <th>Género</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Acción</th>
+          </tr>
         </thead>
         <tbody>
   `;
@@ -28,8 +34,9 @@ export function Favorites() {
         <td>${game.genre}</td>
         <td>${game.description}</td>
         <td>$${game.price.toFixed(2)}</td>
-        <td><button onclick="removeFavoriteFromView(${game.id})">❌</button></td>
-      </tr>`;
+        <td><button onclick="removeFavoriteFromView('${game.id}')">❌ Quitar</button></td>
+      </tr>
+    `;
   });
 
   html += `
@@ -39,9 +46,5 @@ export function Favorites() {
     ${Footer()}
   `;
 
-  window.removeFavoriteFromView = (id) => {
-    removeFavorite(id);
-    document.getElementById('view').innerHTML = Favorites();
-  };
   return html;
 }

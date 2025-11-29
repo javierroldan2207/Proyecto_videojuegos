@@ -2,9 +2,31 @@ import { fetchGames } from '../api.js';
 import { addFavorite } from '../state.js';
 import { Footer } from '../components/Footer.js';
 
-export async function List() {
+window.addFavoriteFromList = async (id) => {
+  const gameIdString = String(id); 
   const games = await fetchGames();
+  
+  const game = games.find(g => g.id === gameIdString); 
+  
+  if (game) {
+    addFavorite(game);
+    window.router(); 
+  }
+};
 
+export async function List() {
+  const games = await fetchGames(); 
+
+  if (!Array.isArray(games) || games.length === 0) {
+    return `
+      <section>
+        <h1>Listado de Juegos</h1>
+        <p>No se pudieron cargar los juegos. (Verifica consola o la URL de la API).</p>
+      </section>
+      ${Footer()}
+    `;
+  }
+  
   let html = `
     <section>
       <h1>Listado de Juegos</h1>
@@ -28,7 +50,7 @@ export async function List() {
         <td>${game.genre}</td>
         <td>${game.description}</td>
         <td>$${game.price.toFixed(2)}</td>
-        <td><button onclick="addFavoriteFromList(${game.id})">❤️ Añadir</button></td>
+        <td><button onclick="addFavoriteFromList('${game.id}')">❤️ Añadir</button></td>
       </tr>
     `;
   });
@@ -39,12 +61,6 @@ export async function List() {
     </section>
     ${Footer()}
   `;
-
-  window.addFavoriteFromList = (id) => {
-    const game = games.find(g => g.id === id);
-    addFavorite(game);
-    document.getElementById('view').innerHTML = List();
-  };
 
   return html;
 }

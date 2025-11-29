@@ -1,9 +1,9 @@
 export const state = {
-  favorites: JSON.parse(localStorage.getItem('favorites')) || []
+  favorites: (JSON.parse(localStorage.getItem('favorites')) || []).filter(g => g && typeof g.id === 'string')
 };
 
 export function addFavorite(game) {
-  if (!state.favorites.find(g => g.id === game.id)) {
+  if (game && !state.favorites.find(g => g.id === game.id)) {
     state.favorites.push(game);
     localStorage.setItem('favorites', JSON.stringify(state.favorites));
   }
