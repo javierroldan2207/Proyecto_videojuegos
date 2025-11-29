@@ -24,7 +24,7 @@ export async function List() {
     return `
       <section>
         <h1>Listado de Juegos</h1>
-        <p>No se pudieron cargar los juegos. (Verifica consola o la URL de la API).</p>
+        <p>No se pudieron cargar los juegos.</p>
       </section>
       ${Footer()}
     `;
@@ -53,7 +53,7 @@ export async function List() {
         <td>${game.genre}</td>
         <td>${game.description}</td>
         <td>$${game.price.toFixed(2)}</td>
-        <td><button onclick="addFavoriteFromList('${game.id}')">❤️ Añadir</button></td>
+        <td><button onclick="addFavoriteFromList('${game.id}')">❤️</button></td>
       </tr>
     `;
   });

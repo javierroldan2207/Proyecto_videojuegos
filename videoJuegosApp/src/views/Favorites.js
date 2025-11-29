@@ -36,7 +36,7 @@ export function Favorites() {
         <td>${game.genre}</td>
         <td>${game.description}</td>
         <td>$${game.price.toFixed(2)}</td>
-        <td><button onclick="removeFavoriteFromView('${game.id}')">❌ Quitar</button></td>
+        <td><button onclick="removeFavoriteFromView('${game.id}')">❌</button></td>
       </tr>
     `;
   });

@@ -8,7 +8,8 @@ export function addFavorite(game) {
     localStorage.setItem('favorites', JSON.stringify(state.favorites));
   }
 }
+
 export function removeFavorite(gameId) {
-  state.favorites = state.favorites.filter(g => g.id !== gameId);
+  state.favorites = state.favorites.filter(g => String(g.id) !== String(gameId));
   localStorage.setItem('favorites', JSON.stringify(state.favorites));
 }
